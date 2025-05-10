@@ -7,10 +7,6 @@
   🌐 <a href="https://visoff.ru">https://visoff.ru</a>
 </p>
 
-
-<img src="/static/pic.jpg" alt="Profile Photo" width="200" align="right">
-
-
 ---
 
 ## 🧑💻 Обо мне
