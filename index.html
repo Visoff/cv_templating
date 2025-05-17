@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="latte sky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.FirstName}} {{.LastName}} - Resume</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                {{if .ImageURL}}
+                <img src="{{.ImageURL}}" alt="Profile Photo" class="profile-img">
+                {{end}}
+                <div class="header-details">
+                    <h1 class="name">{{.FirstName}} <span style="color: var(--primary)">{{.LastName}}</span></h1>
+                    <p class="title">{{.Title}}</p>
+                    <div class="contact-info">
+                        {{if .Email}}<span>{{.Email}}</span>{{end}}
+                        {{if .Phone}}<span>{{.Phone}}</span>{{end}}
+                        {{if .Website}}<span><a href="{{.Website}}" target="_blank">{{.Website}}</a></span>{{end}}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="grid-container">
+            <div class="left-column">
+                {{if .Summary}}
+                <section class="section">
+                    <h2 class="section-title">Обо мне</h2>
+                    <div class="summary-content">
+                        {{.Summary}}
+                    </div>
+                </section>
+                {{end}}
+
+                {{if .Skills}}
+                <section class="section">
+                    <h2 class="section-title">Навыки</h2>
+                    <ul class="skills-list">
+                        {{range $skill := .Skills}}
+                        <li class="skill-item">
+                            <div>
+                                <span class="skill-name">{{$skill.Name}}</span>
+                                <div class="skill-level-text">
+                                    {{if eq $skill.Level 1}}Начинающий
+                                    {{else if eq $skill.Level 2}}Средний
+                                    {{else if eq $skill.Level 3}}Продвинутый
+                                    {{else if eq $skill.Level 4}}Эксперт
+                                    {{else if eq $skill.Level 5}}Профессионал
+                                    {{end}}
+                                </div>
+                            </div>
+                            <div class="skill-bars">
+                                {{range $i := 5}}
+                                <div class="skill-bar {{if gt $skill.Level $i}}filled{{end}}"></div>
+                                {{end}}
+                            </div>
+                        </li>
+                        {{end}}
+                    </ul>
+                </section>
+                {{end}}
+
+                {{if .Languages}}
+                <section class="section">
+                    <h2 class="section-title">Языки</h2>
+                    <ul class="skills-list">
+                        {{range $lang := .Languages}}
+                        <li class="skill-item">
+                            <div>
+                                <span class="skill-name">{{$lang.Name}}</span>
+                                <div class="skill-level-text">
+                                    {{if eq $lang.Level 1}}Начинающий
+                                    {{else if eq $lang.Level 2}}Средний
+                                    {{else if eq $lang.Level 3}}Продвинутый
+                                    {{else if eq $lang.Level 4}}Эксперт
+                                    {{else if eq $lang.Level 5}}Профессионал
+                                    {{end}}
+                                </div>
+                            </div>
+                            <div class="skill-bars">
+                                {{range $i := 5}}
+                                <div class="skill-bar {{if gt $lang.Level $i}}filled{{end}}"></div>
+                                {{end}}
+                            </div>
+                        </li>
+                        {{end}}
+                    </ul>
+                </section>
+                {{end}}
+            </div>
+
+            <div class="right-column">
+                {{if .Experience}}
+                <section class="section">
+                    <h2 class="section-title">Опыт</h2>
+                    {{range $exp := .Experience}}
+                    <div class="timeline-item experience-item">
+                        <h3>{{$exp.Position}}</h3>
+                        <p class="company">{{$exp.Company}}</p>
+                        <p class="date-range">{{$exp.StartDate}}{{if $exp.EndDate}} - {{$exp.EndDate}}{{end}}</p>
+                        <ul>
+                            {{range $desc := $exp.Description}}
+                            <li>{{$desc}}</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                    {{end}}
+                </section>
+                {{end}}
+
+                {{if .Education}}
+                <section class="section">
+                    <h2 class="section-title">Образование</h2>
+                    {{range $edu := .Education}}
+                    <div class="timeline-item education-item">
+                        <h3>{{$edu.Degree}}</h3>
+                        <p class="company">{{$edu.Institution}}</p>
+                        {{if $edu.FieldOfStudy}}
+                        <p class="field-of-study">{{$edu.FieldOfStudy}}</p>
+                        {{end}}
+                        <p class="date-range">{{$edu.StartDate}}{{if $edu.EndDate}} - {{$edu.EndDate}}{{end}}</p>
+                    </div>
+                    {{end}}
+                </section>
+                {{end}}
+
+                {{if .Projects}}
+                <section class="section">
+                    <h2 class="section-title">Проекты</h2>
+                    {{range $project := .Projects}}
+                    <div class="timeline-item project-item">
+                        <h3>{{$project.Name}}</h3>
+                        {{if $project.URL}}
+                        <p class="company"><a href="{{$project.URL}}" target="_blank">{{$project.URL}}</a></p>
+                        {{end}}
+                        {{if $project.Technologies}}
+                        <p class="technologies">
+                            <strong>Technologies:</strong> {{$project.Technologies}}
+                        </p>
+                        {{end}}
+                        <ul>
+                            {{range $desc := $project.Description}}
+                            <li>{{$desc}}</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                    {{end}}
+                </section>
+                {{end}}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

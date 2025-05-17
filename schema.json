@@ -1,0 +1,79 @@
+{
+    "title": "Resume",
+    "description": "Resume schema",
+    "type": "object",
+    "properties": {
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "image_url": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "title": { "type": "string" },
+        "website": { "type": "string" },
+        "summary": { "type": "string" },
+        "languages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" },
+                    "level": { "type": "number" }
+                }
+            }
+        },
+        "skills": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" },
+                    "level": { "type": "number" }
+                }
+            }
+        },
+        "experience": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "position": { "type": "string" },
+                    "company": { "type": "string" },
+                    "start_date": { "type": "string" },
+                    "end_date": { "type": "string" },
+                    "description": { "type": "array" }
+                }
+            }
+        },
+        "education": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "degree": { "type": "string" },
+                    "field_of_study": { "type": "string" },
+                    "institution": { "type": "string" },
+                    "start_date": { "type": "string" },
+                    "end_date": { "type": "string" }
+                }
+            }
+        },
+        "projects": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" },
+                    "description": { "type": "array", "items": { "type": "string" } },
+                    "url": { "type": "string" },
+                    "technologies": { "type": "array", "items": { "type": "string" } }
+                }
+            }
+        },
+        "github": {
+            "type": "object",
+            "properties": {
+                "username": { "type": "string" }
+            }
+        }
+    }
+}
